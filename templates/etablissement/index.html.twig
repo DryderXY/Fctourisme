@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Etablissements{% endblock %}
+
+{% block body %}
+
+    <h2>Liste des établissements</h2>
+
+    {% for etablissement in etablissements %}
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ etablissement.nom }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ etablissement.categorie }}</h6>
+                <p class="card-text">{{ etablissement.description }}</p>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

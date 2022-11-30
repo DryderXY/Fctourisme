@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Etablissement{% endblock %}
+
+{% block body %}
+
+    <div class="container row text-center mx-auto mb-5 mt-5">
+
+            <div class="card col-4 mx-auto" style="width: 18rem;">
+                <div class="card-body">
+                    <img class="card-img-top" src="{{ etablissement.image }}" alt="Card image cap">
+                    <h5 class="card-title mb-3">{{ etablissement.nom }}</h5>
+                    {% for cat in etablissement.categorie %}
+                        <h6 class="card-text mb-2"> <i class="bi bi-bookmarks-fill"></i> <span class="badge rounded-pill text-bg-secondary"> {{ cat.nom }}</span></h6>
+                    {% endfor %}
+                    <p class="card-text">{{ etablissement.description }}</p>
+                    <p class="card-text"><i class="bi bi-geo-alt-fill"></i>  {{ etablissement.adresse }}, {{ etablissement.ville.nom }} , {{ etablissement.ville.CPVille }}</p>
+                    <p><i class="bi bi-telephone-fill"></i> {{ etablissement.telephone }}</p>
+                    <p><i class="bi bi-envelope-at-fill"></i> {{ etablissement.email }}</p>
+                </div>
+            </div>
+    </div>
+
+
+
+
+{% endblock %}

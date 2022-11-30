@@ -5,14 +5,24 @@
 {% block body %}
 
     <h2>Liste des établissements</h2>
-
+<div class="container row text-center mx-auto mb-5 mt-5">
     {% for etablissement in etablissements %}
-        <div class="card" style="width: 18rem;">
+        <div class="card col-4" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">{{ etablissement.nom }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{ etablissement.categorie }}</h6>
-                <p class="card-text">{{ etablissement.description }}</p>
+                <h5 class="card-title mb-3">{{ etablissement.nom }}</h5>
+                {% for cat in etablissement.categorie %}
+                    <h6 class="card-text mb-2"> <i class="bi bi-bookmarks-fill"></i> <span class="badge rounded-pill text-bg-secondary"> {{ cat.nom }} </span></h6>
+                {% endfor %}
+                <p class="card-text">{{ etablissement.description[:75] }}</p>
+
+                <p class="card-text"><i class="bi bi-geo-alt-fill"></i> {{ etablissement.ville.nom }} , {{ etablissement.ville.CPVille }}</p>
+                <a class="btn btn-primary" href="{{ path("app_etablissement_id",{id: etablissement.id}) }}" role="button">Voir <i class="bi bi-info-circle-fill"></i></a>
             </div>
         </div>
     {% endfor %}
+</div>
+
+    <div class="navigation d-flex justify-content-center">
+        {{ knp_pagination_render(etablissements) }}
+    </div>
 {% endblock %}

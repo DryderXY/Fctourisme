@@ -12,6 +12,25 @@
                 <li>
                     <a class="nav-link active" aria-current="page" href="{{ path('app_etablissements') }}">Etablissements</a>
                 </li>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+                    <span class="navbar-text">{{ app.user.pseudo }}</span>
+                    <li>
+                            <a class="nav-link active" aria-current="page" href="{{ path('app_logout') }}">Logout</a>
+                    </li>
+
+
+                {% else %}
+
+                    <li>
+                            <a class="nav-link active" aria-current="page" href="{{ path('app_security') }}">Login</a>
+
+                    </li>
+
+
+                {% endif %}
+
+
             </ul>
         </div>
     </div>

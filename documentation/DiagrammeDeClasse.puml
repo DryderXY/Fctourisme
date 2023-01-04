@@ -6,14 +6,24 @@ class Etablissement {
     - description : string
     - telephone : string
     - CP_ville : string
-    - ville : string
     - email : string
     - image : string
     - actif : bool
     - accueil : bool
     - createdAt : date
     - updatedAt : date
-    - categorie : string
+}
+
+class User {
+    -prenom : string
+    -nom : string
+    -pseudo : string
+    -email : string
+    -password : string
+    -createdAt : date
+    -updatedUp : date
+    -roles : string
+    -actif : bool
 }
 
 class Ville {

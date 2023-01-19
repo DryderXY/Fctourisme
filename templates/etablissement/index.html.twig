@@ -9,7 +9,9 @@
     {% for etablissement in etablissements %}
         <div class="card col-4" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title mb-3">{{ etablissement.nom }}</h5>
+                {% for favoris in etablissement.favoris %}
+                {% endfor %}
+                <h5 class="card-title mb-3">{{ etablissement.nom }} </h5>
                 {% for cat in etablissement.categorie %}
                     <h6 class="card-text mb-2"> <i class="bi bi-bookmarks-fill"></i> <span class="badge rounded-pill text-bg-secondary"> {{ cat.nom }} </span></h6>
                 {% endfor %}

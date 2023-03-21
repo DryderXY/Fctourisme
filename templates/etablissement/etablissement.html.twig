@@ -9,6 +9,11 @@
             <div class="mx-auto" style="width: 25rem;">
                 <div class="">
                     <img class="" src="{{ etablissement.image }}" alt="Card image cap">
+                        {% if etablissement in app.user.getFavoris %}
+                            <a href="{{ path('app_etablissement_favoris_slug', {slug : etablissement.slug}) }}" class="text-decoration-none"><i class="bi bi-star-fill text-warning"></i></a>
+                        {% else %}
+                            <a href="{{ path('app_etablissement_favoris_slug', {slug : etablissement.slug}) }}" class="text-decoration-none"><i class="bi bi-star "></i></a>
+                        {% endif %}
                     <h5 class=" mb-3">{{ etablissement.nom }}</h5>
                     {% for cat in etablissement.categorie %}
                         <h6 class=" mb-2"> <i class="bi bi-bookmarks-fill"></i> <span class="badge rounded-pill text-bg-secondary"> {{ cat.nom }}</span></h6>
@@ -19,8 +24,4 @@
                 </div>
             </div>
     </div>
-
-
-
-
 {% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EtablissementController!{% endblock %}
+
+{% block body %}
+
+    <h1 class="text-center mt-5 mb-5">Listes des etablissements</h1>
+    <ul>
+        <div class="container">
+            <div class="row">
+
+                {% for favori in favoris %}
+                    <div class="col-4">
+                        <div class="card card-block mb-4">
+                            <img class="card-img-top" src="{{ favori.Image }}"  alt="Card image">
+                            <div class="card-block mt-4 text-center">
+                                <h4 class="card-title ">{{ favori.Nom }}
+
+                                    {% if favori in app.user.getFavoris %}
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                    {% else %}
+                                        <i class="bi bi-star "></i>
+                                    {% endif %}
+                                </h4>
+
+                                <p class="card-text">{{ favori.Description |slice(0,75) }}</p>
+                                <p class="card-text">{{ favori.ville.CPVille }} {{ favori.ville.nom}} </p>
+                                <p class="card-text">
+                                    {% for favori in favori.categorie %}
+                                        <span class="badge bg-secondary text-wrap"> {{ favori.nom }}</span>
+                                    {% endfor %}
+                                </p>
+                                <a href="{{ path('app_etablissement_slug', {slug : favori.slug}) }}" class="btn btn-primary">Detail</a>
+                                <div class="card-footer text-muted mt-3">
+                                    {{ favori.CreatedAt | date('m/d/Y') }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+            </div>
+        </div>
+    </ul>
+    <div class="navigation d-flex justify-content-center">
+        {{ knp_pagination_render(favoris) }}
+    </div>
+{% endblock %}

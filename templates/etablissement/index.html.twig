@@ -9,18 +9,25 @@
     {% for etablissement in etablissements %}
         <div class="card col-4" style="width: 18rem;">
             <div class="card-body">
-                {% for favoris in etablissement.favoris %}
-                {% endfor %}
+
                 <h5 class="card-title mb-3">{{ etablissement.nom }} </h5>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {% if etablissement in app.user.getFavoris %}
+                        <i class="bi bi-star-fill text-warning"></i>
+                    {% else %}
+                        <i class="bi bi-star "></i>
+                    {% endif %}
+                {% endif %}
                 {% for cat in etablissement.categorie %}
                     <h6 class="card-text mb-2"> <i class="bi bi-bookmarks-fill"></i> <span class="badge rounded-pill text-bg-secondary"> {{ cat.nom }} </span></h6>
                 {% endfor %}
                 <p class="card-text">{{ etablissement.description[:75] }}</p>
 
                 <p class="card-text"><i class="bi bi-geo-alt-fill"></i> {{ etablissement.ville.nom }} , {{ etablissement.ville.CPVille }}</p>
-                <a class="btn btn-primary" href="{{ path("app_etablissement_id",{id: etablissement.id}) }}" role="button">Voir <i class="bi bi-info-circle-fill"></i></a>
+                <a class="btn btn-primary" href="{{ path("app_etablissement_slug",{slug: etablissement.slug}) }}" role="button">Voir <i class="bi bi-info-circle-fill"></i></a>
             </div>
         </div>
+
     {% endfor %}
 </div>
 
